@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AppDispatch } from '@/app/store';
 import { createTask } from '@/lib/features/tasks/taskSlice';
+import { useAuth0 } from '@auth0/auth0-react';
 
 interface TaskFormInputs {
   title: string;
@@ -75,11 +76,11 @@ const ErrorContainer = styled.div`
 const AddTask: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
+  const { user } = useAuth0();
 
   // Verificar si el usuario está logueado
   React.useEffect(() => {
-    const userId = localStorage.getItem('userId');
-    if (!userId) {
+    if (!user) {
       setIsUserLoggedIn(false); // Si no está logueado, mostrar el error
     }
   }, []);
