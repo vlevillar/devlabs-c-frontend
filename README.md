@@ -1,29 +1,116 @@
-# Redux Toolkit TypeScript Example
+# Frontend - DevLabs Task Management
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+Este proyecto es el frontend de una aplicación de gestión de tareas, desarrollado en **React** con **Redux** para el manejo del estado, y **styled-components** para la estilización. La aplicación se conecta a un backend para crear, leer, actualizar y eliminar tareas.
 
-**Redux Toolkit**(also known as "RTK" for short) provides a standardized way to write Redux logic. It includes utilities that help simplify many common use cases, including [store setup](https://redux-toolkit.js.org/api/configureStore), [creating reducers and writing immutable update logic](https://redux-toolkit.js.org/api/createreducer), and even [creating entire "slices" of state at once](https://redux-toolkit.js.org/api/createslice). This example showcases each of these features in conjunction with Next.js.
+## Características
 
-## Deploy Your Own
+- Registro y autenticación de usuarios mediante OAuth.
+- Creación, visualización, edición y eliminación de tareas.
+- Validación de formularios con **React Hook Form** y **Zod**.
+- Estilos modernos y responsivos con **styled-components**.
+- Manejo del estado global con **Redux**.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Tecnologías utilizadas
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+- **React** - Librería para construir interfaces de usuario.
+- **Redux** - Para el manejo del estado global.
+- **styled-components** - Para la estilización de los componentes.
+- **React Hook Form** - Para la gestión y validación de formularios.
+- **Axios** - Para las solicitudes HTTP al backend.
+- **Zod** (opcional) - Para la validación de datos en el frontend.
 
-## How to Use
+## Instalación
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+1. Clona el repositorio en tu máquina local:
 
-```bash
-npx create-next-app --example with-redux with-redux-app
+   ```bash
+   git clone https://github.com/tu_usuario/devlabs-task-frontend.git
+   ```
+
+2. Navega al directorio del proyecto:
+
+   ```bash
+   cd devlabs-task-frontend
+   ```
+
+3. Instala las dependencias utilizando **npm** o **yarn**:
+
+   - Usando npm:
+
+     ```bash
+     npm install
+     ```
+
+   - Usando yarn:
+
+     ```bash
+     yarn install
+     ```
+
+## Ejecución
+
+Para ejecutar la aplicación en modo desarrollo, puedes usar el siguiente comando:
+
+- Usando npm:
+
+  ```bash
+  npm start
+  ```
+
+- Usando yarn:
+
+  ```bash
+  yarn start
+  ```
+
+Esto abrirá la aplicación en `http://localhost:3000`.
+
+## Uso
+
+1. **Pantalla de inicio**: Al iniciar la aplicación, los usuarios pueden ver sus tareas (si están autenticados). 
+   
+2. **Agregar tarea**: Los usuarios pueden agregar nuevas tareas usando el formulario en la interfaz.
+
+3. **Validación de formularios**: La aplicación valida el título de la tarea antes de enviarlo al backend. Si el título no es válido o falta, se muestra un mensaje de error.
+
+4. **Interacciones con el backend**: La aplicación hace solicitudes HTTP al backend para crear, obtener, actualizar y eliminar tareas. Asegúrate de que tu backend esté en funcionamiento antes de probar las interacciones.
+
+## Endpoints de la API
+
+### **GET /api/todos?userId=<userId>**
+
+Obtiene todas las tareas de un usuario autenticado.
+
+**Parámetros**:
+
+- `userId`: El ID del usuario (proporcionado por el backend tras la autenticación).
+
+### **POST /api/todos**
+
+Crea una nueva tarea para un usuario autenticado.
+
+**Cuerpo de la solicitud**:
+
+```json
+{
+  "title": "Descripción de la tarea",
+  "userId": "google-oauth2|103697667772800746321"
+}
 ```
 
-```bash
-yarn create next-app --example with-redux with-redux-app
+### **PUT /api/todos/:id**
+
+Actualiza una tarea existente.
+
+**Cuerpo de la solicitud**:
+
+```json
+{
+  "title": "Nueva descripción de la tarea"
+}
 ```
 
-```bash
-pnpm create next-app --example with-redux with-redux-app
-```
+### **DELETE /api/todos/:id**
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Elimina una tarea.
+
