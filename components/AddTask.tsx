@@ -77,11 +77,10 @@ const AddTask: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
   const { user } = useAuth0();
-
-  // Verificar si el usuario está logueado
+  
   React.useEffect(() => {
-    if (!user) {
-      setIsUserLoggedIn(false); // Si no está logueado, mostrar el error
+    if (user === undefined) {
+      setIsUserLoggedIn(false);
     }
   }, []);
 

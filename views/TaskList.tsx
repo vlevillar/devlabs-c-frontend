@@ -7,7 +7,7 @@ import TaskItem from '@/components/TaskItem';
 
 export default function TaskList() {
   const dispatch = useDispatch<AppDispatch>();
-  const { tasks, loading, error } = useSelector(
+  const { tasks } = useSelector(
     (state: RootState) => state.tasks,
   );
   const userId = useSelector((state: RootState) => state.auth.user?.userId);
@@ -17,9 +17,6 @@ export default function TaskList() {
       dispatch(fetchTasks(userId));
     }
   }, [userId, dispatch]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
