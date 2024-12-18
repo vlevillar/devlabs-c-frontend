@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useForm, SubmitHandler } from 'react-hook-form';
@@ -66,8 +66,23 @@ const GradientText = styled.button`
   padding: 0;
 `;
 
+const ErrorContainer = styled.div`
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
 const AddTask: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState<boolean>(true);
+
+  // Verificar si el usuario está logueado
+  React.useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      setIsUserLoggedIn(false); // Si no está logueado, mostrar el error
+    }
+  }, []);
 
   const {
     register,
@@ -77,6 +92,10 @@ const AddTask: React.FC = () => {
   } = useForm<TaskFormInputs>();
 
   const onSubmit: SubmitHandler<TaskFormInputs> = (data: TaskFormInputs) => {
+    if (!isUserLoggedIn) {
+      return; // No enviar el formulario si el usuario no está logueado
+    }
+
     dispatch(
       createTask({
         title: data.title,
@@ -102,7 +121,11 @@ const AddTask: React.FC = () => {
         />
         {errors.title && <ErrorMessage>{errors.title.message}</ErrorMessage>}
       </InputContainer>
-      <GradientText type="submit">Add Task</GradientText>
+      {isUserLoggedIn ? (
+        <GradientText type="submit">Add Task</GradientText>
+      ) : (
+        <ErrorContainer>Please log in to add tasks</ErrorContainer>
+      )}
     </FormContainer>
   );
 };

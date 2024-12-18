@@ -24,7 +24,7 @@ export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
   async (userId: string) => {
     const response = await axios.get(
-      `http://localhost:5000/api/todos?userId=${userId}`,
+      `https://devlabs-c-backend.onrender.com/api/todos?userId=${userId}`,
     );
     return response.data;
   },
@@ -33,7 +33,7 @@ export const fetchTasks = createAsyncThunk(
 export const createTask = createAsyncThunk(
   'tasks/createTask',
   async (task: Partial<Task>) => {
-    const response = await axios.post('http://localhost:5000/api/todos', task);
+    const response = await axios.post('https://devlabs-c-backend.onrender.com/api/todos', task);
     return response.data;
   },
 );
@@ -42,7 +42,7 @@ export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (task: Task) => {
     const response = await axios.put(
-      `http://localhost:5000/api/todos/${task.id}`,
+      `https://devlabs-c-backend.onrender.com/api/todos/${task.id}`,
       task,
     );
     return response.data;
@@ -52,7 +52,7 @@ export const updateTask = createAsyncThunk(
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (id: string) => {
-    await axios.delete(`http://localhost:5000/api/todos/${id}`);
+    await axios.delete(`https://devlabs-c-backend.onrender.com/api/todos/${id}`);
     return id;
   },
 );
