@@ -65,6 +65,10 @@ Para ejecutar la aplicación en modo desarrollo, puedes usar el siguiente comand
 
 Esto abrirá la aplicación en `http://localhost:3000`.
 
+## Variables de entorno
+El proyecto consta de variables de entorno para funcionar correctamente en local. Entonces, debemos crear un archivo .env para que funcione correctamente esta es:
+**API_URL**: La url del backend, si queremos que funcione con el backend local usaremos `http://localhost:5000` (Normalmente), si queremos que funcione con el backend deployado, usaremos `https://devlabs-c-backend.onrender.com`.
+
 ## Uso
 
 1. **Pantalla de inicio**: Al iniciar la aplicación, los usuarios pueden ver sus tareas (si están autenticados). 
