@@ -27,7 +27,7 @@ export const fetchTasks = createAsyncThunk(
   'tasks/fetchTasks',
   async (userId: string) => {
     const response = await axios.get(
-      `https://devlabs-c-backend.onrender.com/api/todos?userId=${userId}`,
+      `${API_URL}/api/todos?userId=${userId}`,
     );
     return response.data;
   },
