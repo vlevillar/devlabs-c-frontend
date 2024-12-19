@@ -17,7 +17,6 @@ Este proyecto es el frontend de una aplicación de gestión de tareas, desarroll
 - **styled-components** - Para la estilización de los componentes.
 - **React Hook Form** - Para la gestión y validación de formularios.
 - **Axios** - Para las solicitudes HTTP al backend.
-- **Zod** (opcional) - Para la validación de datos en el frontend.
 
 ## Instalación
 

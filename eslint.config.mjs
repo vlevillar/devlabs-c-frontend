@@ -10,6 +10,11 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.config({
     extends: ['eslint:recommended', 'next'],
+    env: {
+      browser: true,
+      es2021: true,
+      jest: true, 
+    },
   }),
 ];
 
