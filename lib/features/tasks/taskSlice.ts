@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+
+const API_URL = process.env.API_URL
+
 interface Task {
   id: string;
   title: string;
@@ -33,7 +36,7 @@ export const fetchTasks = createAsyncThunk(
 export const createTask = createAsyncThunk(
   'tasks/createTask',
   async (task: Partial<Task>) => {
-    const response = await axios.post('https://devlabs-c-backend.onrender.com/api/todos', task);
+    const response = await axios.post(`${API_URL}/api/todos`, task);
     return response.data;
   },
 );
@@ -42,7 +45,7 @@ export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async (task: Task) => {
     const response = await axios.put(
-      `https://devlabs-c-backend.onrender.com/api/todos/${task.id}`,
+      `${API_URL}/api/todos/${task.id}`,
       task,
     );
     return response.data;
@@ -52,7 +55,7 @@ export const updateTask = createAsyncThunk(
 export const deleteTask = createAsyncThunk(
   'tasks/deleteTask',
   async (id: string) => {
-    await axios.delete(`https://devlabs-c-backend.onrender.com/api/todos/${id}`);
+    await axios.delete(`${API_URL}/api/todos/${id}`);
     return id;
   },
 );

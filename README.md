@@ -24,13 +24,13 @@ Este proyecto es el frontend de una aplicación de gestión de tareas, desarroll
 1. Clona el repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tu_usuario/devlabs-task-frontend.git
+   git clone https://github.com/vlevillar/devlabs-c-frontend.git
    ```
 
 2. Navega al directorio del proyecto:
 
    ```bash
-   cd devlabs-task-frontend
+   cd devlabs-c-frontend
    ```
 
 3. Instala las dependencias utilizando **npm** o **yarn**:
